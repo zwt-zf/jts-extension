@@ -1,4 +1,4 @@
-package indi.zwt;
+package com.github.zwt;
 
 /**
  * Hello world!
