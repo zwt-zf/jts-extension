@@ -7,8 +7,10 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.PrecisionModel;
+import org.locationtech.jts.io.WKTWriter;
 
 public class Geometry3DUtil {
+
     /**
      * 给每个坐标点分配z值
      * @param geom
@@ -21,5 +23,10 @@ public class Geometry3DUtil {
         for (int i = 0; i < zArray.length; i++) {
             geom.getCoordinates()[i].z = zArray[i];
         }
+    }
+
+    public static String get3DWkt(Geometry geometry) {
+        WKTWriter wktWriter = new WKTWriter(3);
+        return wktWriter.write(geometry);
     }
 }
