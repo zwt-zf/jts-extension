@@ -7,6 +7,7 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.geom.PrecisionModel;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKTReader;
@@ -78,6 +79,15 @@ public class GeometryUtil{
     }
 
 
+    public static Polygon createPolygon(List<Coordinate> coordList) {
+        return createPolygon(DEFAULT_GEOMETRY_FACTORY, coordList);
+    }
+
+    public static Polygon createPolygon(GeometryFactory geometryFactory, List<Coordinate> coordList) {
+        Coordinate[] coodArray = new Coordinate[0];
+        coodArray = coordList.toArray(coodArray);
+        return geometryFactory.createPolygon(coordList);
+    }
 
     /**
      * 度 转 米
