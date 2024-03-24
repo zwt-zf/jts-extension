@@ -86,7 +86,7 @@ public class GeometryUtil{
     public static Polygon createPolygon(GeometryFactory geometryFactory, List<Coordinate> coordList) {
         Coordinate[] coodArray = new Coordinate[0];
         coodArray = coordList.toArray(coodArray);
-        return geometryFactory.createPolygon(coordList);
+        return geometryFactory.createPolygon(coodArray);
     }
 
     /**
