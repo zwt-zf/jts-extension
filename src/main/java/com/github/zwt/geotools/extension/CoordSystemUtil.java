@@ -31,6 +31,17 @@ public class CoordSystemUtil {
             + "UNIT[\"Meter\",1]]";
 
 
+    private static final String strWKTWgs84 = "GEOGCS[\"WGS 84\"," 
+            + "DATUM[" + "\"WGS_1984\","
+            + "SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],"
+            + "TOWGS84[0,0,0,0,0,0,0],"
+            + "AUTHORITY[\"EPSG\",\"6326\"]],"
+            + "PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],"
+            + "UNIT[\"DMSH\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9108\"]],"
+            + "AXIS[\"Long\",EAST],"
+            + "AXIS[\"Lat\",NORTH]," 
+            + "AUTHORITY[\"EPSG\",\"4326\"]]";
+
     /**
 	 * 经纬度转WEB墨卡托
 	 * @param geom
@@ -44,6 +55,15 @@ public class CoordSystemUtil {
      TransformException{
 		CoordinateReferenceSystem mercatroCRS = CRS.parseWKT(strWKTMercator);
         MathTransform transform = CRS.findMathTransform(DefaultGeographicCRS.WGS84, mercatroCRS);
+        return JTS.transform(geom, transform);
+	}
+
+    public static Geometry webMactor2lonlat(Geometry geom) throws FactoryException,
+     MismatchedDimensionException, 
+     TransformException{
+		CoordinateReferenceSystem wgs84 = CRS.parseWKT(strWKTWgs84);
+        CoordinateReferenceSystem mercatroCRS = CRS.parseWKT(strWKTMercator);
+        MathTransform transform = CRS.findMathTransform(mercatroCRS, wgs84);
         return JTS.transform(geom, transform);
 	}
 }

@@ -21,4 +21,24 @@ public class CoordSystemUtilTest {
         System.out.println(mactorGeom);
     }
 
+    @Test
+    public void webMactorTest2lonlat() throws Exception {
+        String wkt = "POINT(12954127.137451336 4825947.821073616)";
+        Geometry geom = GeometryUtil.wktToGeometry(wkt);
+        Geometry mactorGeom = CoordSystemUtil.webMactor2lonlat(geom);
+        System.out.println(geom);
+        System.out.println(mactorGeom);
+    }
+
+    @Test
+    public void test() throws Exception {
+        String wkt = "Point(116.368904 39.913423)";
+        Geometry geom = GeometryUtil.wktToGeometry(wkt);
+        Geometry mactorGeom = CoordSystemUtil.lonlat2WebMactor(geom);
+        Geometry wgs84Geom = CoordSystemUtil.webMactor2lonlat(mactorGeom);
+
+        System.out.println(geom);
+        System.out.println(mactorGeom);
+        System.out.println(wgs84Geom);
+    }
 }
