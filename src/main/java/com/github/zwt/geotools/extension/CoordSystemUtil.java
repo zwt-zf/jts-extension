@@ -17,7 +17,7 @@ import org.opengis.referencing.operation.TransformException;
  */
 public class CoordSystemUtil {
 
-    static final String strWKTMercator = "PROJCS[\"World_Mercator\","
+    private static final String strWKTMercator = "PROJCS[\"World_Mercator\","
             + "GEOGCS[\"GCS_WGS_1984\","
             + "DATUM[\"WGS_1984\","
             + "SPHEROID[\"WGS_1984\",6378137,298.257223563]],"
